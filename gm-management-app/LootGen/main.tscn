@@ -1,0 +1,140 @@
+[gd_scene load_steps=5 format=3 uid="uid://fvvyaxuu0dki"]
+
+[ext_resource type="Script" uid="uid://xmc7tv5omtil" path="res://LootGen/main.gd" id="1_tikb0"]
+[ext_resource type="Script" uid="uid://mn5s3v3lir5y" path="res://LootGen/partition.gd" id="2_tikb0"]
+[ext_resource type="Script" uid="uid://bvhgv67hcotgx" path="res://LootGen/entries.gd" id="3_mw3xs"]
+[ext_resource type="Script" uid="uid://im7can0joh45" path="res://LootGen/pop_up_window.gd" id="4_dnwi8"]
+
+[node name="Main" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tikb0")
+
+[node name="Partition" type="HSplitContainer" parent="."]
+layout_mode = 2
+theme_override_constants/autohide = 0
+drag_area_highlight_in_editor = true
+script = ExtResource("2_tikb0")
+
+[node name="SideBar" type="VSplitContainer" parent="Partition"]
+layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="Entries" type="DetailedItemList" parent="Partition/SideBar" node_paths=PackedStringArray("encounter_name", "encounter_tier", "encounter_type", "encounter_terrain", "encounter_diff")]
+layout_mode = 2
+script = ExtResource("3_mw3xs")
+encounter_name = NodePath("../../ScrollBar/EncounterEditOptions/EncounterName")
+encounter_tier = NodePath("../../ScrollBar/EncounterEditOptions/EncounterTier")
+encounter_type = NodePath("../../ScrollBar/EncounterEditOptions/EncounterEnemyType")
+encounter_terrain = NodePath("../../ScrollBar/EncounterEditOptions/EncounterTerrain")
+encounter_diff = NodePath("../../ScrollBar/EncounterEditOptions/EncounterCR")
+
+[node name="SelectionButtons" type="GridContainer" parent="Partition/SideBar"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+columns = 5
+
+[node name="GenerateEncounter" type="Button" parent="Partition/SideBar/SelectionButtons"]
+layout_mode = 2
+text = "Generate"
+
+[node name="DeleteEncounter" type="Button" parent="Partition/SideBar/SelectionButtons"]
+layout_mode = 2
+text = "Delete"
+
+[node name="ScrollBar" type="ScrollContainer" parent="Partition"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="EncounterEditOptions" type="VBoxContainer" parent="Partition/ScrollBar"]
+custom_minimum_size = Vector2(1020, 0)
+layout_mode = 2
+
+[node name="EncounterName" type="TextEdit" parent="Partition/ScrollBar/EncounterEditOptions"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+placeholder_text = "Encounter Name"
+
+[node name="EncounterTier" type="OptionButton" parent="Partition/ScrollBar/EncounterEditOptions"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Tier 1 "
+popup/item_0/id = 1
+popup/item_1/text = "Tier 2"
+popup/item_1/id = 2
+popup/item_2/text = "Tier 3"
+popup/item_2/id = 3
+popup/item_3/text = "Tier 4"
+popup/item_3/id = 4
+
+[node name="EncounterEnemyType" type="OptionButton" parent="Partition/ScrollBar/EncounterEditOptions"]
+layout_mode = 2
+selected = 0
+item_count = 5
+popup/item_0/text = "Humanoid"
+popup/item_0/id = 0
+popup/item_1/text = "Beast"
+popup/item_1/id = 1
+popup/item_2/text = "Fiend"
+popup/item_2/id = 2
+popup/item_3/text = "Construct"
+popup/item_3/id = 3
+popup/item_4/text = "Undead"
+popup/item_4/id = 4
+
+[node name="EncounterTerrain" type="OptionButton" parent="Partition/ScrollBar/EncounterEditOptions"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Forest"
+popup/item_0/id = 0
+popup/item_1/text = "Urban"
+popup/item_1/id = 1
+popup/item_2/text = "Mountain"
+popup/item_2/id = 2
+popup/item_3/id = 3
+
+[node name="EncounterCR" type="OptionButton" parent="Partition/ScrollBar/EncounterEditOptions"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "CR 1-10"
+popup/item_0/id = 0
+popup/item_1/text = "CR 11-16"
+popup/item_1/id = 1
+popup/item_2/text = "CR 17+"
+popup/item_2/id = 2
+
+[node name="Directions" type="Label" parent="Partition/ScrollBar/EncounterEditOptions"]
+layout_mode = 2
+text = "
+- Set the name, tier, type of enemy, and enemy CR and hit generate to create an entry.
+- The higher the CR, the more drops an enemy will have.
+- Certain types of enemies will have naturally low drop rates,"
+
+[node name="PopUpWindow" type="Window" parent="." node_paths=PackedStringArray("entries", "text_window")]
+initial_position = 1
+size = Vector2i(800, 300)
+visible = false
+always_on_top = true
+force_native = true
+script = ExtResource("4_dnwi8")
+entries = NodePath("../Partition/SideBar/Entries")
+text_window = NodePath("ScrollBar/TextDisplay")
+
+[node name="ScrollBar" type="ScrollContainer" parent="PopUpWindow"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextDisplay" type="Label" parent="PopUpWindow/ScrollBar"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+
+[connection signal="item_activated" from="Partition/SideBar/Entries" to="Partition/SideBar/Entries" method="_on_item_activated"]
+[connection signal="item_activated" from="Partition/SideBar/Entries" to="PopUpWindow" method="_on_entries_item_activated"]
+[connection signal="item_selected" from="Partition/SideBar/Entries" to="Partition/SideBar/Entries" method="_on_item_selected"]
+[connection signal="pressed" from="Partition/SideBar/SelectionButtons/GenerateEncounter" to="Partition/SideBar/Entries" method="_on_generate_encounter_pressed"]
+[connection signal="pressed" from="Partition/SideBar/SelectionButtons/DeleteEncounter" to="Partition/SideBar/Entries" method="_on_delete_entry_pressed"]
+[connection signal="close_requested" from="PopUpWindow" to="PopUpWindow" method="_on_close_requested"]

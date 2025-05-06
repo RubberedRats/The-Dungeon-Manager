@@ -1,0 +1,140 @@
+{
+    "weapons" : {
+        "longsword" : {
+            "name": "longsword",
+            "type": "sword",
+            "rarity": 0,
+            "value": 15.0,
+            "description" : "A slashing weapon.",
+            "tags" : {
+                "Slashing" : "This weapon deals slashing damage.",
+                "Versatile" : "This weapon can be used with one or two hands."
+            }
+        },
+        "dagger" : {
+            "name": "dagger",
+            "type": "dagger",
+            "rarity": 0,
+            "value": 2.0,
+            "description" : "A short blade used for stabbing.",
+            "tags" : {
+                "Piercing" : "This weapon deals piercing damage.",
+                "Light" : "This weapon is lightweight and can be dual-wielded.",
+                "Throwable" : "This item can be thrown at targets."
+            }
+        },
+        "longbow" : {
+            "name": "longbow",
+            "type": "bow",
+            "rarity": 0,
+            "value": 10.0,
+            "description" : "A large bow, preferred by elven archers.",
+            "tags" : {
+                "Piercing" : "This weapon deals piercing damage.",
+                "Heavy" : "This weapon is heavy, and has a dexterity requirement.",
+                "Two-handed" : "This weapon requires two hands to use."
+            }
+        },
+        "quarterstaff"  : {
+            "name": "quarterstaff",
+            "type": "staff",
+            "rarity": 0,
+            "value": 15.0,
+            "description" : "A long staff, used by mages to cast.",
+            "tags" : {
+                "Bludgeoning" : "This weapon deals bludgeoning damage.",
+                "Versatile" : "This weapon can be used with one or two hands."
+            }
+        }
+    },
+
+    "armor" : {
+        "plate armor" : {
+            "name": "plate armor",
+            "type": "heavy armor",
+            "rarity": 0,
+            "value": 200.0,
+            "description" : "A heavy suit of armor made of overlapping plates.",
+            "tags" : {
+                "Heavy" : "This armor is heavy, and has a strength requirement."
+            }
+        },
+
+        "leather armor" : {
+            "name": "leather armor",
+            "type": "light armor",
+            "rarity": 0,
+            "value": 15.0,
+            "description" : "Thin leather armor that is easy to move in but offers little protection.",
+            "tags" : {
+            }
+        }
+        
+    },
+
+    "equipment" : {
+        "alchemists' fire" : {
+            "name": "alchemists' fire",
+            "type": "explosive",
+            "rarity": 0,
+            "value": 35.0,
+            "description" : "A bottle of sticky, flammable liquid.",
+            "tags" : {
+                "Throwable" : "This item can be thrown at targets."
+            }
+        },
+        
+        "lockpick" : {
+            "name": "lockpick",
+            "type": "tool",
+            "rarity": 0,
+            "value": 0.5,
+            "description" : "Used to pick locks.",
+            "tags" : {
+                "Tool" : "Those with proficiency can use this tool more effectively."
+            }
+        },
+
+        "backpack" : {
+            "name": "backpack",
+            "type": "container",
+            "rarity": 0,
+            "value": 0.2,
+            "description" : "An empty backpack, used for storage.",
+            "tags" : {
+            }
+        }
+    },
+
+    "treasure" : {
+        "diamond" : {
+            "name": "diamond",
+            "type": "gemstone",
+            "rarity": 2,
+            "value": 1000,
+            "description" : "A valuable gemstone.",
+            "tags" : {
+            }
+        },
+
+        "golden ring" : {
+            "name": "golden ring",
+            "type": "jewelry",
+            "rarity": 1,
+            "value": 500,
+            "description" : "A ring made of solid gold.",
+            "tags" : {
+            }
+        },
+
+        "silver cup" : {
+            "name": "silver cup",
+            "type": "other",
+            "rarity": 1,
+            "value": 85,
+            "description" : "A small chalice made of silver.",
+            "tags" : {
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://3qcxo8ys6tim"]
+
+[ext_resource type="Script" uid="uid://c4wlsam22iskq" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://fvvyaxuu0dki" path="res://LootGen/main.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0xm2m")
+
+[node name="MainMenuTabs" type="TabContainer" parent="."]
+offset_right = 1270.0
+offset_bottom = 35.0
+current_tab = 0
+
+[node name="LootGen" parent="MainMenuTabs" instance=ExtResource("2_0xm2m")]
+layout_mode = 2
+metadata/_tab_index = 0
